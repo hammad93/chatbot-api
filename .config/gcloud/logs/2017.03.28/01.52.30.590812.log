@@ -1,0 +1,24 @@
+2017-03-28 01:52:30,592 DEBUG    root            Loaded Command Group: ['gcloud', 'compute']
+2017-03-28 01:52:30,594 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'firewall_rules']
+2017-03-28 01:52:30,623 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'firewall-rules', 'create']
+2017-03-28 01:52:30,627 DEBUG    root            Running gcloud.compute.firewall-rules.create with Namespace(__calliope_internal_deepest_parser=ArgumentParser(prog='gcloud.compute.firewall-rules.create', usage=None, description='*{command}* is used to create firewall rules to allow incoming\ntraffic to a network.', version=None, formatter_class=<class 'argparse.HelpFormatter'>, conflict_handler='error', add_help=False), account=None, allow=['tcp:8080'], authority_selector=None, authorization_token_file=None, calliope_command=<googlecloudsdk.calliope.backend.Command object at 0x7fc948f9c290>, command_path=['gcloud', 'compute', 'firewall-rules', 'create'], configuration=None, credential_file_override=None, description='chatbot-api', document=None, flatten=None, format=None, h=None, help=None, http_timeout=None, log_http=None, name='http8080', network='default', project=None, quiet=None, source_ranges=['0.0.0.0/0'], source_tags=['chatbot-api'], target_tags=[], trace_email=None, trace_log=None, trace_token=None, user_output_enabled=None, verbosity='warning', version=None).
+2017-03-28 01:52:30,713 DEBUG    root            (gcloud.compute.firewall-rules.create) Some requests did not succeed:
+ - Insufficient Permission
+Traceback (most recent call last):
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/calliope/cli.py", line 742, in Execute
+    resources = args.calliope_command.Run(cli=self, args=args)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/calliope/backend.py", line 1710, in Run
+    resources = command_instance.Run(args)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/base_classes.py", line 1057, in Run
+    utils.RaiseToolException(errors)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/utils.py", line 118, in RaiseToolException
+    RaiseException(problems, calliope_exceptions.ToolException, error_message)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/utils.py", line 130, in RaiseException
+    errors))
+ToolException: Some requests did not succeed:
+ - Insufficient Permission
+
+2017-03-28 01:52:30,714 ERROR    root            (gcloud.compute.firewall-rules.create) Some requests did not succeed:
+ - Insufficient Permission
+
+2017-03-28 01:52:30,723 DEBUG    root            Metrics reporting process started...

@@ -1,0 +1,33 @@
+2017-03-27 23:39:20,764 DEBUG    root            Loaded Command Group: ['gcloud', 'compute']
+2017-03-27 23:39:20,794 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'ssh']
+2017-03-27 23:39:20,799 DEBUG    root            Running gcloud.compute.ssh with Namespace(__calliope_internal_deepest_parser=ArgumentParser(prog='gcloud.compute.ssh', usage=None, description='SSH into a virtual machine instance.', version=None, formatter_class=<class 'argparse.HelpFormatter'>, conflict_handler='error', add_help=False), account=None, authority_selector=None, authorization_token_file=None, calliope_command=<googlecloudsdk.calliope.backend.Command object at 0x7f20447be950>, command=None, command_path=['gcloud', 'compute', 'ssh'], configuration=None, container=None, credential_file_override=None, document=None, dry_run=False, flatten=None, force_key_file_overwrite=None, format=None, h=None, help=None, http_timeout=None, log_http=None, plain=False, project=None, quiet=None, ssh_args=[], ssh_flag=None, ssh_key_file=None, strict_host_key_checking=None, trace_email=None, trace_log=None, trace_token=None, user_host='chatbot-api', user_output_enabled=None, verbosity='warning', version=None, zone=None).
+2017-03-27 23:39:22,737 DEBUG    root            (gcloud.compute.ssh) Could not fetch resource:
+ - Insufficient Permission
+Traceback (most recent call last):
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/calliope/cli.py", line 742, in Execute
+    resources = args.calliope_command.Run(cli=self, args=args)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/calliope/backend.py", line 1710, in Run
+    resources = command_instance.Run(args)
+  File "/usr/lib/google-cloud-sdk/lib/surface/compute/ssh.py", line 130, in Run
+    self.compute_client, self.project))[0]
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/command_lib/compute/flags.py", line 407, in ResolveResources
+    scope_lister)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/command_lib/compute/scope_prompter.py", line 56, in PromptForScope
+    underspecified_names)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/command_lib/compute/flags.py", line 187, in Lister
+    results[scope] = scope_func[scope](prj)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/zones/service.py", line 29, in List
+    return compute_client.MakeRequests([request])
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/client_adapter.py", line 87, in MakeRequests
+    errors, error_message='Could not fetch resource:')
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/utils.py", line 118, in RaiseToolException
+    RaiseException(problems, calliope_exceptions.ToolException, error_message)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/utils.py", line 130, in RaiseException
+    errors))
+ToolException: Could not fetch resource:
+ - Insufficient Permission
+
+2017-03-27 23:39:22,742 ERROR    root            (gcloud.compute.ssh) Could not fetch resource:
+ - Insufficient Permission
+
+2017-03-27 23:39:22,747 DEBUG    root            Metrics reporting process started...

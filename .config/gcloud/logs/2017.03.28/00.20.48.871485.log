@@ -1,0 +1,24 @@
+2017-03-28 00:20:48,873 DEBUG    root            Loaded Command Group: ['gcloud', 'compute']
+2017-03-28 00:20:48,874 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'project_info']
+2017-03-28 00:20:48,902 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'project-info', 'describe']
+2017-03-28 00:20:48,906 DEBUG    root            Running gcloud.compute.project-info.describe with Namespace(__calliope_internal_deepest_parser=ArgumentParser(prog='gcloud.compute.project-info.describe', usage=None, description='Describe the Google Compute Engine project resource.', version=None, formatter_class=<class 'argparse.HelpFormatter'>, conflict_handler='error', add_help=False), account=None, authority_selector=None, authorization_token_file=None, calliope_command=<googlecloudsdk.calliope.backend.Command object at 0x7fe012c301d0>, command_path=['gcloud', 'compute', 'project-info', 'describe'], configuration=None, credential_file_override=None, document=None, flatten=None, format=None, h=None, help=None, http_timeout=None, log_http=None, project=None, quiet=None, trace_email=None, trace_log=None, trace_token=None, user_output_enabled=None, verbosity='warning', version=None).
+2017-03-28 00:20:49,002 DEBUG    root            (gcloud.compute.project-info.describe) Could not fetch resource:
+ - Insufficient Permission
+Traceback (most recent call last):
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/calliope/cli.py", line 742, in Execute
+    resources = args.calliope_command.Run(cli=self, args=args)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/calliope/backend.py", line 1710, in Run
+    resources = command_instance.Run(args)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/base_classes.py", line 730, in Run
+    error_message='Could not fetch resource:')
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/utils.py", line 118, in RaiseToolException
+    RaiseException(problems, calliope_exceptions.ToolException, error_message)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/utils.py", line 130, in RaiseException
+    errors))
+ToolException: Could not fetch resource:
+ - Insufficient Permission
+
+2017-03-28 00:20:49,003 ERROR    root            (gcloud.compute.project-info.describe) Could not fetch resource:
+ - Insufficient Permission
+
+2017-03-28 00:20:49,008 DEBUG    root            Metrics reporting process started...

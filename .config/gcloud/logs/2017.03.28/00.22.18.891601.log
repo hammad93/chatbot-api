@@ -1,0 +1,36 @@
+2017-03-28 00:22:18,893 DEBUG    root            Loaded Command Group: ['gcloud', 'compute']
+2017-03-28 00:22:18,895 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'instances']
+2017-03-28 00:22:18,922 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'instances', 'describe']
+2017-03-28 00:22:18,927 DEBUG    root            Running gcloud.compute.instances.describe with Namespace(__calliope_internal_deepest_parser=ArgumentParser(prog='gcloud.compute.instances.describe', usage=None, description='Describe a virtual machine instance.', version=None, formatter_class=<class 'argparse.HelpFormatter'>, conflict_handler='error', add_help=False), account=None, authority_selector=None, authorization_token_file=None, calliope_command=<googlecloudsdk.calliope.backend.Command object at 0x7f5e63ce3410>, command_path=['gcloud', 'compute', 'instances', 'describe'], configuration=None, credential_file_override=None, document=None, flatten=None, format=None, h=None, help=None, http_timeout=None, log_http=None, name='chatbot-api', project=None, quiet=None, trace_email=None, trace_log=None, trace_token=None, user_output_enabled=None, verbosity='warning', version=None, zone=None).
+2017-03-28 00:22:19,706 DEBUG    root            (gcloud.compute.instances.describe) Unable to fetch a list of zones. Specifying [--zone] may fix this issue:
+ - Insufficient Permission
+Traceback (most recent call last):
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/calliope/cli.py", line 742, in Execute
+    resources = args.calliope_command.Run(cli=self, args=args)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/calliope/backend.py", line 1710, in Run
+    resources = command_instance.Run(args)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/base_classes.py", line 706, in Run
+    ref = self.CreateReference(args)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/base_classes.py", line 771, in CreateReference
+    return self.CreateZonalReference(args.name, args.zone)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/scope_prompter.py", line 316, in CreateZonalReference
+    [resource_name], zone_arg, resource_type, flag_names, region_filter)[0]
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/scope_prompter.py", line 311, in CreateZonalReferences
+    prefix_filter=region_filter)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/scope_prompter.py", line 288, in CreateScopedReferences
+    prefix_filter=prefix_filter)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/scope_prompter.py", line 140, in _PromptForScope
+    attribute, service, flag_names, prefix_filter))
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/scope_prompter.py", line 83, in FetchChoiceResources
+    'issue{2}'.format(attribute, ', or '.join(flag_names), punctuation))
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/utils.py", line 118, in RaiseToolException
+    RaiseException(problems, calliope_exceptions.ToolException, error_message)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/utils.py", line 130, in RaiseException
+    errors))
+ToolException: Unable to fetch a list of zones. Specifying [--zone] may fix this issue:
+ - Insufficient Permission
+
+2017-03-28 00:22:19,708 ERROR    root            (gcloud.compute.instances.describe) Unable to fetch a list of zones. Specifying [--zone] may fix this issue:
+ - Insufficient Permission
+
+2017-03-28 00:22:19,713 DEBUG    root            Metrics reporting process started...

@@ -1,0 +1,42 @@
+2017-03-28 01:45:36,511 DEBUG    root            Loaded Command Group: ['gcloud', 'compute']
+2017-03-28 01:45:36,512 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'firewall_rules']
+2017-03-28 01:45:36,542 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'firewall-rules', 'list']
+2017-03-28 01:45:36,547 DEBUG    root            Running gcloud.compute.firewall-rules.list with Namespace(__calliope_internal_deepest_parser=ArgumentParser(prog='gcloud.compute.firewall-rules.list', usage=None, description='List Google Compute Engine firewall rules.', version=None, formatter_class=<class 'argparse.HelpFormatter'>, conflict_handler='error', add_help=False), account=None, authority_selector=None, authorization_token_file=None, calliope_command=<googlecloudsdk.calliope.backend.Command object at 0x7fad65e17110>, command_path=['gcloud', 'compute', 'firewall-rules', 'list'], configuration=None, credential_file_override=None, document=None, filter=None, flatten=None, format=None, h=None, help=None, http_timeout=None, limit=None, log_http=None, names=[], page_size=None, project=None, quiet=None, regexp=None, sort_by=None, trace_email=None, trace_log=None, trace_token=None, uri=False, user_output_enabled=None, verbosity='warning', version=None).
+2017-03-28 01:45:36,549 INFO     root            Display format "
+          table(
+            name,
+            network.basename(),
+            sourceRanges.list():label=SRC_RANGES,
+            allowed[].map().firewall_rule().list():label=RULES,
+            sourceTags.list():label=SRC_TAGS,
+            targetTags.list():label=TARGET_TAGS
+          )
+        ".
+2017-03-28 01:45:36,648 DEBUG    root            (gcloud.compute.firewall-rules.list) Some requests did not succeed:
+ - Insufficient Permission
+Traceback (most recent call last):
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/calliope/cli.py", line 742, in Execute
+    resources = args.calliope_command.Run(cli=self, args=args)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/calliope/backend.py", line 1712, in Run
+    display_info=self.ai.display_info).Display()
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/calliope/display.py", line 414, in Display
+    self._printer.Print(self._resources)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/core/resource/resource_printer_base.py", line 251, in Print
+    for resource in resources:
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/core/util/peek_iterable.py", line 198, in next
+    item = self._NextItem()
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/core/util/peek_iterable.py", line 174, in _NextItem
+    return self._iterable.next()
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/base_classes.py", line 307, in Run
+    utils.RaiseToolException(errors)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/utils.py", line 118, in RaiseToolException
+    RaiseException(problems, calliope_exceptions.ToolException, error_message)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/utils.py", line 130, in RaiseException
+    errors))
+ToolException: Some requests did not succeed:
+ - Insufficient Permission
+
+2017-03-28 01:45:36,649 ERROR    root            (gcloud.compute.firewall-rules.list) Some requests did not succeed:
+ - Insufficient Permission
+
+2017-03-28 01:45:36,659 DEBUG    root            Metrics reporting process started...

@@ -1,0 +1,29 @@
+2017-03-27 23:38:28,461 DEBUG    root            Loaded Command Group: ['gcloud', 'compute']
+2017-03-27 23:38:28,491 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'ssh']
+2017-03-27 23:38:28,497 DEBUG    root            Running gcloud.compute.ssh with Namespace(__calliope_internal_deepest_parser=ArgumentParser(prog='gcloud.compute.ssh', usage=None, description='SSH into a virtual machine instance.', version=None, formatter_class=<class 'argparse.HelpFormatter'>, conflict_handler='error', add_help=False), account=None, authority_selector=None, authorization_token_file=None, calliope_command=<googlecloudsdk.calliope.backend.Command object at 0x7f80389f6a10>, command=None, command_path=['gcloud', 'compute', 'ssh'], configuration=None, container=None, credential_file_override=None, document=None, dry_run=False, flatten=None, force_key_file_overwrite=None, format=None, h=None, help=None, http_timeout=None, log_http=None, plain=False, project=None, quiet=None, ssh_args=[], ssh_flag=None, ssh_key_file=None, strict_host_key_checking=None, trace_email=None, trace_log=None, trace_token=None, user_host='chatbot-api', user_output_enabled=None, verbosity='warning', version=None, zone=None).
+2017-03-27 23:38:28,497 WARNING  root            The public SSH key file for gcloud does not exist.
+2017-03-27 23:38:28,497 WARNING  root            The private SSH key file for gcloud does not exist.
+2017-03-27 23:38:28,498 WARNING  root            You do not have an SSH key for gcloud.
+2017-03-27 23:38:28,498 WARNING  root            [/usr/bin/ssh-keygen] will be executed to generate a key.
+2017-03-27 23:38:45,705 DEBUG    root            (gcloud.compute.ssh) Could not fetch instance:
+ - Insufficient Permission
+Traceback (most recent call last):
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/calliope/cli.py", line 742, in Execute
+    resources = args.calliope_command.Run(cli=self, args=args)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/calliope/backend.py", line 1710, in Run
+    resources = command_instance.Run(args)
+  File "/usr/lib/google-cloud-sdk/lib/surface/compute/ssh.py", line 131, in Run
+    instance = self.GetInstance(instance_ref)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/command_lib/compute/ssh_utils.py", line 400, in GetInstance
+    error_message='Could not fetch instance:')
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/utils.py", line 118, in RaiseToolException
+    RaiseException(problems, calliope_exceptions.ToolException, error_message)
+  File "/usr/lib/google-cloud-sdk/lib/googlecloudsdk/api_lib/compute/utils.py", line 130, in RaiseException
+    errors))
+ToolException: Could not fetch instance:
+ - Insufficient Permission
+
+2017-03-27 23:38:45,717 ERROR    root            (gcloud.compute.ssh) Could not fetch instance:
+ - Insufficient Permission
+
+2017-03-27 23:38:45,751 DEBUG    root            Metrics reporting process started...

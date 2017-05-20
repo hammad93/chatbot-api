@@ -1,0 +1,5 @@
+2017-03-28 00:21:19,799 DEBUG    root            Loaded Command Group: ['gcloud', 'compute']
+2017-03-28 00:21:19,800 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'project_info']
+2017-03-28 00:21:19,828 DEBUG    root            Loaded Command Group: ['gcloud', 'compute', 'project-info', 'describe']
+2017-03-28 00:21:19,830 ERROR    root            (gcloud.compute.project-info.describe) unrecognized arguments: chatbot-api
+2017-03-28 00:21:19,835 DEBUG    root            Metrics reporting process started...
