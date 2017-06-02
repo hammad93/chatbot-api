@@ -30,16 +30,45 @@ INPUT/OUTPUT: Inputs and output are similar where they are both in this format:
         'uuid' : String - UUID
         'message' : String - Message
     }
+    
+    Creates the entry in a journal file
 '''
 def chat(data) :
     directory = cache(data['uuid'])
     b = Brain(directory)
     
     reply = b.reply(data['message'])
-        
+    
     response = {
         'message' : reply,
         'uuid' : data['uuid'] 
     }
-        
+    
+    #Log into our journal
+    
+    
     return response
+
+'''
+PURPOSE: Create a log for the conversations
+METHOD: Open up the journal file for the associated brain
+INPUT/OUPUT: The UUID for the brain, the message, and the brain response
+    Structure of journal file (identifier's are encapsulated by ``) -
+    [`DATETIME`] [`BRAIN OR USER?`] : `REPLY`
+    
+    Example:
+    [2017-06-02 19:27:07] [BRAIN] : hello!
+    [2017-06-02 19:27:08] [USER] : hi!
+'''
+def log(uuid, message, reply) :
+    #Directory of the brain journal
+    directory = 'cache/' + uuid + '.brain-journal'
+    
+    #Open journal
+    fp = open(directory, 'w')
+    
+    #Write to journal
+    fp.write()
+    
+    #Close journal and finalize
+    fp.close()

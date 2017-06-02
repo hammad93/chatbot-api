@@ -580,3 +580,15 @@ py
 python
 sudo python api.py
 clear
+l
+git status
+l
+touch .gitignore
+cat .gitignore
+nano .gitignore
+git status
+git add -a
+git add -A
+git commit -m "revision"
+git push
+git push origin master
