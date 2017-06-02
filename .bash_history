@@ -533,3 +533,50 @@ cd cache
 cobe -b 47e2c9b0afbe498ba031c991f83bf35e.brain console
 cobe -b 2ddc6327f72d4af98d89ea0aadb79730.brain console
 cobe -b e71c4f94416442c78a452707ba5560b3.brain console
+l
+git init
+git clone https://github.com/hammad93/chatbot-api.git
+l
+git status
+touch .gitignore
+l
+cat .gitignore
+nano .gitignore
+l
+git status
+git add .gitignore
+git commit -m "add a .gitignore file"
+git config --global user.name "hammad93"
+git commit -m "add a .gitignore file"
+git push
+git push master
+git remote add origin https://github.com/hammad93/chatbot-api.git
+git push
+git push remote origin
+git push origin master
+git pull
+git push origin master
+git pull
+git pull origin master
+git commit -m "initial setup"
+git push origin master
+l
+git status
+git add -A
+git commit -m "initial upload"
+git push origin master
+l
+sudo python api.py 
+l
+cd create-bot/
+l
+python create.py
+l
+cd ..
+l
+python api.py 
+sudo python api.py
+py
+python
+sudo python api.py
+clear

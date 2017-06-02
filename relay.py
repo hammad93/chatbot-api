@@ -8,7 +8,7 @@ sys.path.append('mongodb/')
 import get
 
 '''
-PURPOSE: retrieve the directory for the brain and download it if it isn't
+PURPOSE: retrieve the brain from the cache and download it if it isn't
 METHOD: Download from mongodb atlas database
 INPUT/OUTPUT: input is the uuid and output is the directory to the brain
 '''
@@ -24,8 +24,12 @@ def cache(uuid) :
         return directory
 '''
 PURPOSE: to provide a chat relay for the chatbots
-METHOD:
-INPUT/OUTPUT:
+METHOD: Load brain from cache and query for message
+INPUT/OUTPUT: Inputs and output are similar where they are both in this format:
+    {
+        'uuid' : String - UUID
+        'message' : String - Message
+    }
 '''
 def chat(data) :
     directory = cache(data['uuid'])
@@ -34,9 +38,6 @@ def chat(data) :
     reply = b.reply(data['message'])
         
     response = {
-        'timestamp' : str(datetime.datetime.utcnow()),
-        'to' : data['from'],
-        'from' : data['to'],
         'message' : reply,
         'uuid' : data['uuid'] 
     }

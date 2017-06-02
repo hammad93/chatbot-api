@@ -13,9 +13,9 @@ import get, put                             #MongoDB
 '''
 CREATE CHATBOT BRAIN
 Hammad Usmani
-Last Updated: 4/28/17
+Created: 4/28/17
 
-`Purpose`: Create a markov chain chatbot with a user's tweets cor the corpus
+`Purpose`: Create a markov chain chatbot with a user's tweets for the corpus
 `Method`: Use the open source library called cobe and the Twitter API to 
 generate chatbots. Upload to the local mongodb database
 `Input`: Twitter handle and username associated with chatbot

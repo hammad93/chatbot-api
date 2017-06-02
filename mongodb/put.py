@@ -7,7 +7,7 @@ connect = "mongodb://hammadus:7Bnf3_#99@brains-shard-00-00-yjbyo.mongodb.net:270
 
 '''
 Hammad Usmani
-Last Updated: 5/1/17
+Created: 5/1/17
 
 UPLOAD BRAIN
 
