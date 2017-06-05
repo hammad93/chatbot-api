@@ -40,6 +40,7 @@ def chat(data) :
     reply = b.reply(data['message'])
     
     response = {
+        'timestamp' : str(datetime.datetime.utcnow()),
         'message' : reply,
         'uuid' : data['uuid'] 
     }
@@ -54,11 +55,11 @@ PURPOSE: Create a log for the conversations
 METHOD: Open up the journal file for the associated brain
 INPUT/OUPUT: The UUID for the brain, the message, and the brain response
     Structure of journal file (identifier's are encapsulated by ``) -
-    [`DATETIME`] [`BRAIN OR USER?`] : `REPLY`
+    [`DATETIME`] [`BRAIN OR USERNAME?`] : `REPLY`
     
     Example:
     [2017-06-02 19:27:07] [BRAIN] : hello!
-    [2017-06-02 19:27:08] [USER] : hi!
+    [2017-06-02 19:27:08] [hammadus] : hi!
 '''
 def log(uuid, message, reply) :
     #Directory of the brain journal
@@ -68,7 +69,8 @@ def log(uuid, message, reply) :
     fp = open(directory, 'w')
     
     #Write to journal
-    fp.write()
+    fp.write('[' + str(datetime.datetime.now()) + '] ' + '[USER] : ' + message + '\n')  #User message
+    fp.write('[' + str(datetime.datetime.now()) + '] ' + '[BRAIN] : ' + reply + '\n')   #Brain message
     
     #Close journal and finalize
     fp.close()
