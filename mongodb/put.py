@@ -33,3 +33,14 @@ def upload(brain, uuid, username):
     
     #Create new file and upload, declaring the _id as the uuid
     fp = fs.put(brain, _uuid = uuid, _username = username)
+'''
+PURPOSE: Upload message to the MongoDB atlas instance brains
+METHOD: Use pyMongo client to upload BSON document using insert_one
+INPUT: Message needing to be inserted
+'''
+def message(data) :
+    #Connect to the appropriate MongoDB database
+    db = MongoClient(connect).brains
+    
+    #Inset message
+    db.messages.insert_one(data)

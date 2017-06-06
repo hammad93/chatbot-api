@@ -5,7 +5,7 @@ import os.path
 #Import different classes
 import sys
 sys.path.append('mongodb/')
-import get
+import get, put
 
 '''
 PURPOSE: retrieve the brain from the cache and download it if it isn't
@@ -40,37 +40,40 @@ def chat(data) :
     reply = b.reply(data['message'])
     
     response = {
-        'timestamp' : str(datetime.datetime.utcnow()),
         'message' : reply,
         'uuid' : data['uuid'] 
     }
     
     #Log into our journal
-    
+    log(data, reply)
     
     return response
 
 '''
 PURPOSE: Create a log for the conversations
-METHOD: Open up the journal file for the associated brain
-INPUT/OUPUT: The UUID for the brain, the message, and the brain response
-    Structure of journal file (identifier's are encapsulated by ``) -
-    [`DATETIME`] [`BRAIN OR USERNAME?`] : `REPLY`
-    
-    Example:
-    [2017-06-02 19:27:07] [BRAIN] : hello!
-    [2017-06-02 19:27:08] [hammadus] : hi!
+METHOD: Store a record in the MongoDB with all relevant fields
+INPUT: The original message data and the reply from the brain. The following is
+the data model for the objects to be stored in the DB:
+    - Note, two of these will be stored. one for the user one for the both
+    {
+        timestamp : DateTime
+        to : String
+        from : String
+        message : String
+        arguments : Optional
+    }
 '''
-def log(uuid, message, reply) :
-    #Directory of the brain journal
-    directory = 'cache/' + uuid + '.brain-journal'
+def log(data, reply) :
+    #Send the original message to the MongoDB
+    put.message(data)
     
-    #Open journal
-    fp = open(directory, 'w')
+    #Construct the brain's reply
+    document = {
+        'timestamp' : str(datetime.datetime.utcnow()),
+        'to' : data['from'],
+        'from' : data['uuid'],
+        'message' : reply
+    }#No arguments
     
-    #Write to journal
-    fp.write('[' + str(datetime.datetime.now()) + '] ' + '[USER] : ' + message + '\n')  #User message
-    fp.write('[' + str(datetime.datetime.now()) + '] ' + '[BRAIN] : ' + reply + '\n')   #Brain message
-    
-    #Close journal and finalize
-    fp.close()
+    #Send brains reply
+    put.message(document)

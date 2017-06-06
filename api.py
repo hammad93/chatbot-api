@@ -11,7 +11,7 @@ sys.path.append('create-bot/')
 sys.path.append('mongodb/')
 sys.path.append('twitter-api/')
 
-import create as birth
+import create as spawn
 import get, put
 
 '''
@@ -43,7 +43,7 @@ app.config.SWAGGER_UI_JSONEDITOR = True
 API MODEL DECLARATIONS
 The following are the models for the appropriate api resources
 '''
-chat_model = api.model('Resource', {
+chat_model = api.model('chat_model', {
     'timestamp' : fields.DateTime(description = 'The date and time in ISO 8601 (YYYY-MM-DDThh:mm:ss.sTZD) format that the message was sent. Please use seconds where applicable',
                 required = True, example = str(datetime.datetime.utcnow())),
     'from' : fields.String(description = 'The identifier for the object sending the message. This can be the username or uuid',
@@ -55,6 +55,13 @@ chat_model = api.model('Resource', {
                 required = False)
 })
 
+create_model = api.model('create_model', {
+    'timestamp' : fields.DateTime(description = 'The date and time in ISO 8601 (YYYY-MM-DDThh:mm:ss.sTZD) format that the message was sent. Please use seconds where applicable',
+                required = True, example = str(datetime.datetime.utcnow())),
+    'username' : fields.String(description = 'The identifier for the object sending the message. This can be the username or uuid',
+                required = True, example = "hammadus"),
+    'arguments' : fields.List(fields.String, description = "Arguments for creating the chatbot. Please use double quotes", example = '{"handle":"ArianaGrande"}')
+})
 '''
 #CHAT RELAY
 
@@ -70,7 +77,7 @@ REFERENCES:
 '''
 @api.route('/chat')
 class chat(Resource):
-    @api.doc(body = chat_model)
+    @api.doc(description = 'This resource chats with the brain associated with the uuid that are housed in MongoDB Atlas')
     @api.expect(chat_model)
     def post(self):
         #return chat response
@@ -86,66 +93,52 @@ class chat(Resource):
 `OUTPUT:` The UUID of the chatbot
 '''
 @api.route('/api/create')
-@api.doc(params={'username': 'An ID', 'handle': 'Twitter Handle'})
 class create(Resource):
-    
-    def get(self):
-        #declare parser attributes
-        parser = reqparse.RequestParser()
-        parser.add_argument('username', action='append')
-        parser.add_argument('handle', action='append')
+    @api.doc(description = 'If you are creating using a twitter handle, make sure to ommit the @')
+    @api.expect(create_model)
+    def post(self):
+        #Assign payload
+        data = api.payload
         
-        #Get data from request
-        data = parser.parse_args()
+        #Find handle from arguments
+        twitter = json.loads(data['arguments'][0])
         
         #Create chatbot based on parameters
-        return birth.twitter(data['handle'][0], data['username'][0], "cache/")
+        return spawn.twitter(twitter['handle'], data['username'], "cache/")
 '''
 ## READ
-`PURPOSE:` To return a binary file containing the .brain of the chatbot
+`PURPOSE:` To return a response containing the chat log of the chatbot
 
 `INPUT:` Request JSON requires these parameters:
     - UUID
     
-`OUTPUT:` .brain file
+`OUTPUT:` Array of BSON objects
 '''
 @api.route('/api/read')
-@api.doc(params={'id': 'An ID'})    
+@api.doc(description = 'The resource to get the chatlogs', params={
+                'uuid': 'The identifier for the chatbot in the query', 
+                'limit' : 'The limit of the number of requests to receive'})
 class read(Resource):
-    def get(self, id):
-        return id
-
-'''
-## UPDATE
-`PURPOSE:` Update a chatbot
-
-`INPUT:` Request JSON with these parameters:
-    - Chatbot UUID
-    - .brain file
-    
-`OUTPUT:` UUID of the updated chatbot
-'''
-@api.route('/api/update')
-@api.doc(params={'id': 'An ID'})    
-class update(Resource):
-    def get(self, id):
-        return id
-
-'''
-## DELETE
-`PURPOSE:` Delete a chatbot
-
-`INPUT:` Request JSON with these parameters:
-    - Chatbot UUID
-    
-`OUTPUT:` UUID of deleted chatbot
-'''
-@api.route('/api/delete')
-@api.doc(params={'id': 'An ID'})    
-class delete(Resource):
-    def get(self, id):
-        return id
-
+    def get(self):
+        #declare parser attributes
+        parser = reqparse.RequestParser()
+        parser.add_argument('uuid', action='append')
+        parser.add_argument('limit', action='append', type = int)
+        
+        #Get data from request
+        response = parser.parse_args()
+        
+        #Format the response data
+        data = {
+            'uuid' : response['uuid'][0],
+            'limit' : response['limit'][0]
+        }
+        
+        #Set limit if there's none
+        if data['limit'] is None :
+            data['limit'] = 10
+        
+        return get.log(data['uuid'], data['limit'])
 '''
 ## LIST
 `PURPOSE:` List the chatbots for a username
@@ -156,10 +149,22 @@ class delete(Resource):
 `OUTPUT:` List of Chatbot UUID's
 '''
 @api.route('/api/list')
-@api.doc(params={'id': 'An ID'})    
+@api.doc(description = 'The resource to get the uuids of a user', params={
+                'username': 'The username to query for'})
 class list(Resource):
-    def get(self, id):
-        return id
+    def get(self):
+        #declare parser attributes
+        parser = reqparse.RequestParser()
+        parser.add_argument('username', action='append')
+        
+        #Get data from request
+        response = parser.parse_args()
+        
+        #Format the response data
+        data = {
+            'username' : response['username'][0]
+        }
+        return get.uuids(data['username'])
 
 
 if __name__ == '__main__':

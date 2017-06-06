@@ -1,5 +1,5 @@
 from pymongo import MongoClient
-from bson import ObjectId
+from bson import ObjectId, Binary, Code, json_util
 import gridfs
 '''
 commands to upload and download the file -
@@ -20,11 +20,10 @@ fp = open('cobe.brain', 'w')
 #write it output
 fp.write(file.read())
 '''
+#Global Connection String
+connect = "mongodb://hammadus:7Bnf3_#99@brains-shard-00-00-yjbyo.mongodb.net:27017,brains-shard-00-01-yjbyo.mongodb.net:27017,brains-shard-00-02-yjbyo.mongodb.net:27017/brains?ssl=true&replicaSet=brains-shard-0&authSource=admin"
+
 def cache(uuid) :
-    print 'getting from cache'
-    #connection string
-    connect = "mongodb://hammadus:7Bnf3_#99@brains-shard-00-00-yjbyo.mongodb.net:27017,brains-shard-00-01-yjbyo.mongodb.net:27017,brains-shard-00-02-yjbyo.mongodb.net:27017/brains?ssl=true&replicaSet=brains-shard-0&authSource=admin"
-    
     #Use connection string to connect to MongoDB atlas
     db = MongoClient(connect).brains
     #Use GridFS to store the brain file
@@ -43,3 +42,37 @@ def cache(uuid) :
     fp.close()
     
     return uuid
+'''
+PURPOSE: To get the chat logs of a chatbot
+METHOD: Get from MongoDB brains messages collection
+INPUT: The uuid associated with the chatbot and the limit of messages (by
+default 10)
+OUTPUT: The BSON documents serialized into JSON for the chat records
+'''
+def log(uuid, limit = 10) :
+    #Use connection string to connect to MongoDB Atlas
+    db = MongoClient(connect).brains
+    
+    #Connect to messages
+    collection = db.messages
+    
+    #Send query for all relevant messages with the uuid
+    response = collection.find({'uuid' : uuid}).limit(limit)
+    
+    #Send back response as list
+    return json_util.dumps(response)
+'''
+PURPOSE: To return all the chatbot uuid's associated with a username
+METHOD: Go into GridFS and query the username
+INPUT: Username
+OUTPUT: Array of UUID's
+'''
+def uuids(username) :
+    #Use connection string to connect to MongoDB atlas
+    db = MongoClient(connect).brains
+    
+    #query for responses
+    response = db.fs.files.find({'_username':  username})
+    
+    #Send back as JSON object
+    return json_util.dumps(response)

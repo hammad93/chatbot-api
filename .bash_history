@@ -592,3 +592,5 @@ git add -A
 git commit -m "revision"
 git push
 git push origin master
+l
+sudo python api.py 
