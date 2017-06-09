@@ -594,3 +594,9 @@ git push
 git push origin master
 l
 sudo python api.py 
+python
+sudo pip install pymongo --upgrade
+git status
+git add -A
+git commit -m "production draft ready"
+git push origin master
