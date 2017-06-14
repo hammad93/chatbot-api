@@ -600,3 +600,8 @@ git status
 git add -A
 git commit -m "production draft ready"
 git push origin master
+git status
+git add -A
+git commit -m "simplified relay logging"
+git push origin mater
+git push origin master

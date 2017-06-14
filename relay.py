@@ -40,15 +40,40 @@ def chat(data) :
     reply = b.reply(data['message'])
     
     response = {
-        'timestamp' : str(datetime.datetime.utcnow()),
-        'to' : data['from'],
-        'from' : data['to'],
         'message' : reply,
         'uuid' : data['uuid'] 
     }
     
     #Log into our journal
-    put.message(data)
-    put.message(response)
+    log(data, reply)
     
     return response
+
+'''
+PURPOSE: Create a log for the conversations
+METHOD: Store a record in the MongoDB with all relevant fields
+INPUT: The original message data and the reply from the brain. The following is
+the data model for the objects to be stored in the DB:
+    - Note, two of these will be stored. one for the user one for the both
+    {
+        timestamp : DateTime
+        to : String
+        from : String
+        message : String
+        arguments : Optional
+    }
+'''
+def log(data, reply) :
+    #Send the original message to the MongoDB
+    put.message(data)
+    
+    #Construct the brain's reply
+    document = {
+        'timestamp' : str(datetime.datetime.utcnow()),
+        'to' : data['from'],
+        'uuid' : data['uuid'],
+        'message' : reply
+    }#No arguments
+    
+    #Send brains reply
+    put.message(document)

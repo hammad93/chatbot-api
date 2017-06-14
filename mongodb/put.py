@@ -42,5 +42,5 @@ def message(data) :
     #Connect to the appropriate MongoDB database
     db = MongoClient(connect).brains
     
-    #Inset message
+    #Insert message
     db.messages.insert_one(data)

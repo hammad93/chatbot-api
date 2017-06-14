@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 from bson import ObjectId, Binary, Code, json_util
 import gridfs
+import json
 '''
 commands to upload and download the file -
 #connection string
@@ -60,7 +61,7 @@ def log(uuid, limit = 10) :
     response = collection.find({'uuid' : uuid}).limit(limit)
     
     #Send back response as list
-    return json_util.dumps(response)
+    return json.loads(json_util.dumps(response))
 '''
 PURPOSE: To return all the chatbot uuid's associated with a username
 METHOD: Go into GridFS and query the username
@@ -75,4 +76,4 @@ def uuids(username) :
     response = db.fs.files.find({'_username':  username})
     
     #Send back as JSON object
-    return json_util.dumps(response)
+    return json.loads(json_util.dumps(response))
