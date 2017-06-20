@@ -1,6 +1,8 @@
 import json
 from flask import Flask, request
 from flask_restplus import Resource, Api, fields, reqparse
+from flask_cors import CORS, cross_origin
+
 import datetime
 #Default import from current directory
 import relay
@@ -37,6 +39,7 @@ default this is the root director
 '''
 app = Flask(__name__)
 api = Api(app, version='1.0', title='Chatbot API', description='OpenAPI')
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app.config.SWAGGER_UI_DOC_EXPANSION = 'list'
 app.config.SWAGGER_UI_JSONEDITOR = True
 '''
@@ -45,7 +48,7 @@ The following are the models for the appropriate api resources
 '''
 chat_model = api.model('chat_model', {
     'timestamp' : fields.DateTime(description = 'The date and time in ISO 8601 (YYYY-MM-DDThh:mm:ss.sTZD) format that the message was sent. Please use seconds where applicable',
-                required = True, example = str(datetime.datetime.utcnow())),
+                requirced = True, example = str(datetime.datetime.utcnow())),
     'from' : fields.String(description = 'The identifier for the object sending the message. This can be the username or uuid',
                 required = True, example = "hammadus"),
     'uuid' : fields.String(description = 'The identifier for the object receiving the message. This can be the username or uuid', 

@@ -605,3 +605,24 @@ git add -A
 git commit -m "simplified relay logging"
 git push origin mater
 git push origin master
+python
+git status
+git add -A
+git commit -m "initial journal capability"
+git push origin master
+git status
+git add -A
+git commit "updated readme"
+git commit -m  "updated readme"
+git push
+git push origin master
+sudo pip install flask_restplus --upgrade
+git status
+git add -A
+git commit -m "added functionality for json requests and auto documentation"
+git push
+git push origin master
+python3
+sudo python3 api.py 
+sudo python app.py
+sudo python api.py
