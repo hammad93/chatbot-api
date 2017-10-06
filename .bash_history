@@ -626,3 +626,76 @@ python3
 sudo python3 api.py 
 sudo python app.py
 sudo python api.py
+ls
+git status
+git commit
+git commit -m "GET resources return JSON object"
+git add -A
+git commit -m "GET resources return JSON object"
+git push origin master
+sudo pip install -U flask-cors
+l
+sydo python api.py 
+sudo python api.py 
+python
+pip install cobe
+ls
+sudo py api.py 
+sudo python api.py 
+cd 
+ls
+cd tw
+cd twitter-api/
+ls
+cobe console
+python temp.py 
+cobe console -b "PAM.brain"
+cobe -b "PAM.brain"
+cobe console
+cobe console -b PAM.brain
+python
+python temp.py 
+python
+cobe console
+python temp.py
+python
+python temp.py
+python
+git status
+git add -A
+git commit -m "Added CORS handling"
+git push origin master
+git status
+lshw
+sudo python api.py 
+ls
+sudo python api.py 
+git status
+git push
+$ git push --mirror git@bitbucket.org:hammad93/chatbot-api
+git push --mirror git@bitbucket.org:hammad93/chatbot-api
+git push --mirror git@bitbucket.org:hammad93/chatbot-api.git
+git remote add origin git@bitbucket.org:hammad93/chatbot-api.git
+git push origin master
+ssh -T git@bitbucket.org
+ssh-keygen
+ls ~/.ssh 
+ls
+ssh -T git@bitbucket.org
+sudo ssh -T git@bitbucket.org
+ls ~/.ssh 
+cat id_rsa
+cd ~/.ssh 
+cat id_rsa
+cat id_rsa.pub
+sudo ssh -T git@bitbucket.org
+sudo ssh -T hammad93@bitbucket.org
+cat id_rsa
+cat id_rsa.pub 
+ssh -T git@bitbucket.org
+cd ..
+ls
+ssh -T git@bitbucket.org
+ls
+git push --mirror git@bitbucket.org:hammad93/chatbot-api
+git status

@@ -31,7 +31,7 @@ NOTES:
     - each brain is named with a randomly generated UUID with RFC 4122 standards
     - to return in the prober hex string format, use uuid.hex
 '''
-def twitter(handle, username, directory = ""):
+def twitter(handle, username, directory = "cache/"):
     #Generate UUID as string
     UUID = uuid.uuid4().hex
     
@@ -45,6 +45,32 @@ def twitter(handle, username, directory = ""):
     #Iterate through corpus list and learn each parsed tweet
     for tweet in corpus :
         b.learn(tweet['text-parsed'])
+    
+    #Create a file pointer to the brain for upload 
+    fp = open(name, 'r')
+    put.upload(fp, UUID, username)
+    fp.close()
+    
+    #Return our identifier
+    return UUID
+'''
+PURPOSE: Create a markov chain chatbot from a binary text file
+METHOD: Input every line into a .brain and send it for upload
+OUTPUT: UUID
+'''
+def custom(file, username, directory = "cache/"):
+    #Generate UUID as string
+    UUID = uuid.uuid4().hex
+    
+    #Create brain
+    name = directory + UUID + '.brain'
+    b = Brain(name)
+    
+    #Open file and parse it into our corpus
+    file = open(file, "r")
+    lines = file.readlines()
+    for line in lines :
+        b.learn(line)
     
     #Create a file pointer to the brain for upload 
     fp = open(name, 'r')
