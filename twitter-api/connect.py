@@ -17,10 +17,10 @@ Last Updated: 4/27/17
 - https://github.com/joestump/python-oauth2/wiki/Twitter-Three-legged-OAuth
 '''
 
-CONSUMER_KEY = 'rbswqIgmLOxC293az9c5444zv'
-CONSUMER_SECRET = 'oNyE6QQOdG9gGV3qOg4DIBJK5PdonGd8ftr3ew1sXrMZSepVoD'
-ACCESS_KEY = '208775028-ZXGCwPZ5DN5auRc6rH9G1zaerE16rkKnYWCRoO4e'
-ACCESS_SECRET = 'PgZStyuENCtj9fqrjDZxTENKebTn0dISPVJFw45GyvpfK'
+CONSUMER_KEY = ''
+CONSUMER_SECRET = ''
+ACCESS_KEY = ''
+ACCESS_SECRET = ''
 
 def oauth_req(url, http_method="GET", post_body="", http_headers=None):
     
